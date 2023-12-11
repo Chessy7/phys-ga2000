@@ -66,7 +66,6 @@ plt.title('Crank-Nicolson Solution for 1D Particle in a box')
 plt.xlabel('X (m)')
 plt.ylabel('$Re(\phi(x, t))$')
 
-# Initialize the line
 line, = ax.plot([], [], lw=2)
 
 x_min, x_max = 0, 1e-8
@@ -80,17 +79,11 @@ def init():
 
 def frame(i):
     line.set_data(x, np.real(phi_M[:,i]))
-
-    # Autoscale x-axis in each frame
-#     ax.relim()
-#     ax.autoscale_view()
-
     return (line,)
 
 anim = animation.FuncAnimation(fig, frame, init_func=init,
                                frames=t, interval=40, blit=True)
 
-# Save animation as a GIF
 anim.save('animation.gif', writer='pillow')
 
 
